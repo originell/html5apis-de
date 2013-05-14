@@ -1,0 +1,65 @@
+/* ::General
+/* ------------------------------------------------------------ */
+body, input {
+    font: 18px/140% Avenir, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ::Forms
+/* ------------------------------------------------------------ */
+form {
+    width: 25em;
+    margin: 8em auto 3em;
+}
+input[type="submit"] {
+    display: block;
+    margin-left: .8em;
+    padding: 1em 2em;
+    color: #fff;
+    border: 0;
+    background: rgb(104, 215, 250);
+    background-image: -webkit-gradient(linear, left top, left bottom,
+                                       from(rgb(104, 215, 250)),
+                                       to(rgb(98, 199, 231)));
+}
+input[type="submit"]:hover {
+    cursor: pointer;
+    background-image: -webkit-gradient(linear, left top, left bottom,
+                                       from(rgb(104, 215, 250)),
+                                       to(rgb(104, 215, 250)));
+}
+input {
+    width: 25em;
+    padding: .8em;
+    border: 1px solid hsl(0, 0%, 80%);
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, .1);
+}
+
+
+/* ::TOdO List
+/* ------------------------------------------------------------ */
+ul {
+    display: block;
+    width: 24em;
+    margin: 0 auto;
+    padding: 0;
+}
+li {
+    list-style: none;
+    width: 80%;
+    padding: 1em 2em;
+    margin: .5em;
+    background: rgba(80, 80, 80, .08);
+    background-image: -webkit-gradient(linear, left top, left bottom,
+                                       from(white), to(whiteSmoke));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+li i {
+    float: right;
+    color: rgba(0, 0, 0, .1);
+}
+li i:hover {
+    color: #000;
+    cursor: pointer;
+}
