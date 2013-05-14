@@ -1,0 +1,449 @@
+// Table of Contents
+
+// See mark-down file for how to use compass' rhythm and trailer/leader functions or check the compass documentation
+// -------------------------------------------------------------
+
+// ::Imports pre-render
+//:: Reset
+//:: Settings
+//:: Mixins
+// ::Clearfix extends
+// ::Base styles
+
+// ::Layout styles 
+// ::Media queries 
+// ::State styles
+// ::Debugs
+
+// ::Imports pre-render. Must be after reset 
+// ------------------------------------------------------------
+@import compass/typography/vertical_rhythm
+@import compass/css3
+@import compass/utilities
+
+@import libs/reset
+@import libs/settings
+@import libs/mixins
+@import libs/font-awesome
+
+/* ::Clearfixs and extends. Use which suits best
+/* -----------------------------------------------------------
+
+// CHOOSE YOUR CLEARFIX, OR YOU KNOW USE BOTH. WHATEVER, I'M NOT YOUR MOTHER
+
+// Use clearfix if you need general clearfixing
+.clearfix
+  +clearfix
+
+// Use pie-clearfix if you need clearfixing that doesn't use overflow: hidden
+.pie-clearfix
+  +pie-clearfix
+
+// OTHER EXTENDS
+
+// Max width, for images etc... in RWD
+.max-width
+  max-width: 100%
+  height: auto
+
+/* ::Base styles Almost exclusively single element selectors
+/* ------------------------------------------------------------
+
+html
+  font-size: 100%
+
+body
+  color: $base-color
+  font-family: Avenir, Helvetica, Arial, sans-serif
+  +advancedtype
+  overflow-x: hidden
+
+a
+  color: $action
+  +force-wrap
+  // force text links to wrap
+  &:hover, &:focus, &:active
+    color: $action-respond
+
+// Import base typography into the cascade (if required)
+@import libs/typography
+
+// Import form styles into the cascade (if required)
+@import libs/forms
+
+// Default slide styles
+@import libs/bespoke
+
+
+/* ::Layout
+/* ------------------------------------------------------------
+h1
+  font-weight: 600
+
+ol
+  +ordered-inside
+
+ul
+  +unordered-inside
+
+img
+  max-width: 100%
+  max-height: 100%
+
+
+/* ::State styles
+/* ------------------------------------------------------------
+
+.is-hidden
+  display: none
+
+.is-shown, .is-block
+  display: block
+
+.is-uppercase
+  text-transform: uppercase
+  letter-spacing: 1px
+
+.is-lowercase
+  text-transform: lowercase
+
+/* :: Specific Themes
+/*    Thanks to the bespoke-state plugin we can switch styles
+/*    (transitions, colors,...) during the presentation.
+/* ------------------------------------------------------------
+.caniuse-bg
+  background: #3D3527
+
+  .bespoke-slide
+    background: transparent
+    color: #fff
+
+
+.rocks-bg
+  background: url('/static/imgs/html5rocks_bg.jpg')
+  +background-size(cover)
+
+  .bespoke-slide
+    background: transparent
+    color: #fff
+
+  h1
+    background: rgba(0, 0, 0, .8)
+    padding-left: 0.4em
+    +padding-leader(1)
+    +padding-trailer(1)
+
+  a
+    //color: darken(#fff, 50%)
+    color: lighten(#08c, 5%)
+    text-decoration: none
+    i
+      margin-left: .35em
+
+  code a
+    color: slategray
+    text-decoration: underline
+
+
+.vs-bg
+  background: url('/static/imgs/capoeira.jpg')
+  +background-size(cover)
+
+  .bespoke-slide
+    background: transparent
+    color: #fff
+
+  h1
+    background: rgba(0, 0, 0, .8)
+    padding-left: 0.4em
+    +padding-leader(1)
+    +padding-trailer(1)
+
+  a
+    //color: darken(#fff, 50%)
+    color: lighten(#08c, 5%)
+    text-decoration: none
+    i
+      margin-left: .35em
+
+  pre[class*="language-"]
+    background: rgba(245, 242, 240, .98)
+
+  code a
+    color: slategray
+    text-decoration: underline
+
+
+/* ::Specific Slide styles
+/* ------------------------------------------------------------
+code
+  +adjust-font-size-to(28px)
+
+#slide1
+  background: #000 url('/static/imgs/html5apis.png') no-repeat
+  background-position: 30% 50%
+  background-size: 135%
+
+  h1
+    +adjust-font-size-to(64px)
+    +leader(5)
+    margin-left: 3em
+    color: #fff
+    font-weight: 600
+    letter-spacing: 1px
+    +rotate(-3deg)
+
+
+#slide2
+  img
+    +rotate(-10deg)
+    +leader(7)
+    height: 80%
+    float: left
+    margin-right: 4em
+  h1
+    +adjust-font-size-to(104px)
+    +leader(3)
+  p
+    +adjust-font-size-to(36px)
+    font-weight: 200
+
+    i
+      margin-right: .25em
+    span
+      color: lighten($base-color, 20%)
+
+
+#slide4
+  img
+    display: block
+    margin: 6em auto
+  h1
+    width: 2.5em
+    margin: -3.6em auto
+    padding: 0
+    background: transparent
+    color: #333
+    font-variant: small-caps
+    font-weight: 800
+
+
+#slide5, #slide7
+  img
+    float: left
+    +backface-visibility(hidden)
+
+  h1
+    +adjust-font-size-to(104px)
+    +leader(3)
+    margin-left: 40%
+
+
+#slide6
+  pre
+    +trailer(2)
+  img
+    position: absolute
+    height: 80%
+    left: 50%
+    margin-left: -150px
+    bottom: -80px
+    +rotate(90deg)
+    -webkit-box-reflect: right -20px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent), to(rgba(255,255,255,.3)))
+
+
+#slide7
+  h1
+    padding-left: .3em
+
+  img
+    width: 33%
+    +leader(8)
+
+#geomap
+  height: 280px
+
+
+#slide9
+  h1
+    +adjust-font-size-to(40px)
+  div
+    width: 100%
+    height: 80%
+    background: #999
+
+    img
+      margin: 0 auto
+
+    h2
+      +padding-leader(10)
+      font-weight: 600
+      text-align: center
+      color: #333
+
+
+#slide10, #slide11, #slide12, #slide14, #slide15, #slide16, #slide17, #slide18
+  ul
+    +adjust-font-size-to(32px)
+    background: rgba(0, 0, 0, .8)
+    font-weight: 600
+    +nobullet
+    +padding-leader(1)
+    +padding-trailer(1)
+    padding-left: 2em
+  li
+    +leader(1)
+    +trailer(1)
+
+
+#slide10, #slide11
+  li
+    // Using icons from Font-Awesome as bullet points.
+    &:last-child:before
+      font-family: FontAwesome
+      content: "\f0ec"
+      margin: 0 1em 0 -15px
+    &:first-child:before
+      font-family: FontAwesome
+      content: "\f10b"
+      margin: 0 1.5em 0 -15px
+
+
+#slide11
+  button
+    float: right
+    margin-top: -4px
+    margin-right: 2em
+  video
+    float: left
+  form
+    +padding-leader(2)
+    +padding-trailer(1)
+    padding-left: 1em
+    background: rgba(0, 0, 0, .8)
+    float: right
+
+    input
+      display: block
+      margin-right: 1em
+
+
+#slide12
+  li
+    &:nth-child(1):before
+      font-family: FontAwesome
+      content: "\f005"
+      margin: 0 1em 0 -15px
+    &:nth-child(2):before
+      font-family: FontAwesome
+      content: "\f0ac"
+      margin: 0 1em 0 -15px
+    &:nth-child(3):before
+      font-family: FontAwesome
+      content: "\f0a9"
+      margin: 0 1em 0 -15px
+    &:nth-child(4):before
+      font-family: FontAwesome
+      content: "\f074"
+      margin: 0 1em 0 -15px
+    &:nth-child(5):before
+      font-family: FontAwesome
+      content: "\f017"
+      margin: 0 1em 0 -15px
+    &:nth-child(6):before
+      font-family: FontAwesome
+      content: "\f0c0"
+      margin: 0 1em 0 -15px
+    &:nth-child(7):before
+      font-family: FontAwesome
+      content: "\f021"
+      margin: 0 1em 0 -15px
+
+
+#slide14
+  li
+    &:before
+      font-family: FontAwesome
+      content: "\f054"
+      margin: 0 1em 0 1.25em
+    &:nth-child(1):before
+      font-family: FontAwesome
+      content: "\f0ec"
+      margin: 0 1em 0 -15px
+
+
+#slide15
+  li
+    &:nth-child(1):before
+      font-family: FontAwesome
+      content: "\f057"
+      margin: 0 1.2em 0 -13px
+    &:nth-child(2):before
+      font-family: FontAwesome
+      content: "\f0ed"
+      margin: 0 1em 0 -15px
+    &:nth-child(3):before
+      font-family: FontAwesome
+      content: "\f0e0"
+      margin: 0 1em 0 -15px
+    &:nth-child(4):before
+      font-family: FontAwesome
+      content: "\f101"
+      margin: 0 1.2em 0 -8px
+    &:nth-child(5):before
+      font-family: FontAwesome
+      content: "\f101"
+      margin: 0 1em 0 1.55em
+
+
+#slide16
+  li
+    &:before
+      font-family: FontAwesome
+      content: "\f054"
+      margin: 0 1.2em 0 -10px
+    &:nth-child(1):before
+      font-family: FontAwesome
+      content: "\f0ac"
+      margin: 0 1em 0 -13px
+    &:nth-child(2):before
+      font-family: FontAwesome
+      content: "\f057"
+      margin: 0 1em 0 -15px
+
+
+#slide17
+  li
+    &:before
+      font-family: FontAwesome
+      content: "\f0ac"
+      margin: 0 1em 0 -13px
+    &:last-child:before, &:nth-child(5):before
+      font-family: FontAwesome
+      content: "\f054"
+      margin: 0 1.2em 0 -10px
+    &:last-child i:last-child
+      margin-left: 1.35em
+
+
+#slide18
+  p
+    +adjust-font-size-to(64px)
+    height: 80%
+    +padding-leader(1)
+    padding-left: 1em
+  .fx
+    font-family: 'Faster One', cursive
+
+
+#slide19, #slide20, #slide21
+  ul
+    +adjust-font-size-to(24px)
+    background: rgba(0, 0, 0, .8)
+    font-weight: 600
+    +padding-leader(1)
+    +padding-trailer(1)
+    padding-left: 2em
+  li
+    +leader(1)
+    +trailer(1)

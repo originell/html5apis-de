@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport"  content="width=device-width" />
+</head>
+<body>
+    <div id="debug"></div>
+    <form action="/img" name="usermedia" method="post" accept-charset="utf-8" enctype='multipart/form-data'>
+        <input type="file" name="img" accept="image/*;capture=camera">
+    </form>
+    <div id="controls">
+        <button>Start Stream</button>
+    </div>
+    <script src="/socket.io/socket.io.v0.9.9.js"></script>
+    <script src="/static/js/vendor/lodash.min.js"></script>
+    <script>
+        var debug = document.getElementById('debug'),
+            log = function (msg) { debug.innerHTML += '<p>'+msg+'</p>'; };
+        log('Started...');
+
+        var socket = io.connect('/');
+        socket.on('established', function() {
+            log('Connection established.');
+        });
+
+        function orientationChange(e) {
+            var tiltLR = e.gamma,
+                tiltFB = e.beta,
+                dir = e.alpha;
+            socket.emit('orientation', [tiltLR, tiltFB, dir]);
+        };
+        var lazy_orientation = _.throttle(orientationChange, 60);
+        log('&#9733; Streaming Device orientation.');
+
+        var stop_stream_btn = document.querySelector('#controls button'),
+            streaming = false;
+        stop_stream_btn.addEventListener('click', function() {
+            if (!streaming) {
+                window.addEventListener('deviceorientation', lazy_orientation, false);
+                streaming = true;
+                stop_stream_btn.innerHTML = 'Stop Stream';
+            } else {
+                window.removeEventListener('deviceorientation', lazy_orientation);
+                socket.emit('end orientation');
+                streaming = false;
+                stop_stream_btn.innerHTML = 'Start Stream';
+            }
+        });
+
+
+        var camera = document.querySelector('input[accept]');
+        camera.addEventListener('change', function() {
+            document.forms.usermedia.submit();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+.DS*
+.sass-cache
+node_modules
+uploads/**
+!uploads/README.md

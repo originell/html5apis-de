@@ -1,0 +1,10 @@
+{
+  "name": "html5apis",
+  "description": "HTML5 APIs Presentation for SAE Technology Institute 2013 by Luis Nell",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "*",
+    "socket.io": "*"
+  }
+}
