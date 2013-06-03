@@ -55,7 +55,7 @@ li {
     margin: .5em;
     background: rgba(80, 80, 80, .08);
     background-image: -webkit-gradient(linear, left top, left bottom,
-                                       from(white), to(#CCC));
+                                       from(white), to(whiteSmoke));
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

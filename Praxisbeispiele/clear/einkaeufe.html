@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Einkaufsliste</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="static/css/main.css" />
+    <link rel="stylesheet" href="static/css/mobile.css" media="screen and (max-width: 320px)" />
+    <link rel="stylesheet" href="static/css/font-awesome.min.css" />
+</head>
+<body>
+    <form name="todoForm">
+        <input name="todo" placeholder="Was müssen wir noch machen...?">
+        <input type="submit" value="Hinzufügen">
+    </form>
+    <ul id="listen">
+        <li><a href="index.html">Diverses</a></li>
+        <li><a href="einkaeufe.html" class="active">Einkäufe</a></li>
+    </ul>
+    <ul id="todo_list" data-name="einkaeufe"></ul>
+    <script src="static/js/vendor/zepto.min.js"></script>
+    <script src="static/js/vendor/hammer.min.js"></script>
+    <!-- enthält die ToDo JS App -->
+    <script src="static/js/app.js"></script>
+    <!-- übernimmt das wechseln der liste und die history -->
+    <script src="static/js/main.js"></script>
+</body>
+</html>
