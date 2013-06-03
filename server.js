@@ -31,6 +31,12 @@ io.sockets.on('connection', function(socket) {
     socket.on('end orientation', function(data, ack) {
         io.sockets.emit('orientationStop');
     });
+    socket.on('nextSlide', function(data, ack) {
+        io.sockets.emit('nextSlide');
+    });
+    socket.on('prevSlide', function(data, ack) {
+        io.sockets.emit('prevSlide');
+    });
 
     app.post('/img', function(req, res) {
         fs.readFile(req.files.img.path, function(err, data) {

@@ -4,6 +4,23 @@
     <title></title>
     <meta charset="utf-8" />
     <meta name="viewport"  content="width=device-width" />
+    <style>
+        #next {
+            padding: 6em 10em;
+            background: rgb(1, 211, 255);
+            border: 0;
+            position: absolute;
+            bottom: 50px;
+            right: 0;
+        }
+        #prev {
+            padding: 2em 1em;
+            background: rgb(211, 52, 55);
+            position: absolute;
+            bottom: 50px;
+            left: 0;
+        }
+    </style>
 </head>
 <body>
     <div id="debug"></div>
@@ -13,6 +30,10 @@
     <div id="controls">
         <button>Start Stream</button>
     </div>
+
+    <button id="next">Next</button>
+    <button id="prev">Previous</button>
+
     <script src="/socket.io/socket.io.v0.9.9.js"></script>
     <script src="/static/js/vendor/lodash.min.js"></script>
     <script>
@@ -22,7 +43,7 @@
 
         var socket = io.connect('/');
         socket.on('established', function() {
-            log('Connection established.');
+            log('&#9733; Connection established.');
         });
 
         function orientationChange(e) {
@@ -32,7 +53,6 @@
             socket.emit('orientation', [tiltLR, tiltFB, dir]);
         };
         var lazy_orientation = _.throttle(orientationChange, 60);
-        log('&#9733; Streaming Device orientation.');
 
         var stop_stream_btn = document.querySelector('#controls button'),
             streaming = false;
@@ -41,12 +61,21 @@
                 window.addEventListener('deviceorientation', lazy_orientation, false);
                 streaming = true;
                 stop_stream_btn.innerHTML = 'Stop Stream';
+                log('&#9733; Streaming Device orientation.');
             } else {
                 window.removeEventListener('deviceorientation', lazy_orientation);
                 socket.emit('end orientation');
                 streaming = false;
                 stop_stream_btn.innerHTML = 'Start Stream';
+                log('&#9733; Stopped Streaming Device orientation.');
             }
+        });
+
+        document.getElementById('next').addEventListener('click', function(e) {
+            socket.emit('nextSlide', '');
+        });
+        document.getElementById('prev').addEventListener('click', function(e) {
+            socket.emit('prevSlide', '');
         });
 
 

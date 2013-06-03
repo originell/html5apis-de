@@ -336,13 +336,13 @@ localStorage.removeItem('todo:1');</code></pre>
             });
         };
 
-        bespoke.horizontal.from('article',
-                { progress: true,
-                  hash: true,
-                  bullets: true,
-                  spotlight: true,
-                  blackout: true,
-                  state: true });
+        window.presentation = bespoke.horizontal.from('article',
+                                                      { progress: true,
+                                                        hash: true,
+                                                        bullets: true,
+                                                        spotlight: true,
+                                                        blackout: true,
+                                                        state: true });
     }();
     </script>
     <!-- websocket abstraction and fallbacks via socket.io <3 -->
@@ -381,6 +381,14 @@ localStorage.removeItem('todo:1');</code></pre>
                 '<img src="'+ imgsrc +'" />';
             // Nobody likes that sluggish gray of the placeholder...
             document.querySelector('#slide9 div').style.background = 'transparent';
+        });
+
+        // Presentation Remote Control
+        socket.on('nextSlide', function() {
+             window.presentation.next();
+        });
+        socket.on('prevSlide', function() {
+             window.presentation.prev();
         });
     }();
     </script>
