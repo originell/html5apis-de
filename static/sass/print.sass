@@ -1,0 +1,137 @@
+// Table of Contents
+
+// See mark-down file for how to use compass' rhythm and trailer/leader functions or check the compass documentation
+// -------------------------------------------------------------
+
+// ::Imports pre-render
+//:: Reset
+//:: Settings
+//:: Mixins
+// ::Clearfix extends
+// ::Base styles
+
+// ::Layout styles 
+// ::Media queries 
+// ::State styles
+// ::Debugs
+
+// ::Imports pre-render. Must be after reset 
+// ------------------------------------------------------------
+@import compass/typography/vertical_rhythm
+@import compass/css3
+@import compass/utilities
+
+@import libs/reset
+@import libs/settings
+@import libs/mixins
+@import libs/font-awesome
+
+/* ::Clearfixs and extends. Use which suits best
+/* -----------------------------------------------------------
+
+// CHOOSE YOUR CLEARFIX, OR YOU KNOW USE BOTH. WHATEVER, I'M NOT YOUR MOTHER
+
+// Use clearfix if you need general clearfixing
+.clearfix
+  +clearfix
+
+// Use pie-clearfix if you need clearfixing that doesn't use overflow: hidden
+.pie-clearfix
+  +pie-clearfix
+
+// OTHER EXTENDS
+
+// Max width, for images etc... in RWD
+.max-width
+  max-width: 100%
+  height: auto
+
+/* ::Base styles Almost exclusively single element selectors
+/* ------------------------------------------------------------
+
+html
+  font-size: 100%
+
+body
+  color: $base-color
+  font-family: Avenir, Helvetica, Arial, sans-serif
+  +advancedtype
+  overflow-x: hidden
+
+a
+  color: $action
+  +force-wrap
+  // force text links to wrap
+  &:hover, &:focus, &:active
+    color: $action-respond
+
+// Import base typography into the cascade (if required)
+@import libs/typography
+
+// Import form styles into the cascade (if required)
+@import libs/forms
+
+/* ::Layout
+/* ------------------------------------------------------------
+h1
+  font-weight: 600
+
+ol
+  +ordered-inside
+
+ul
+  +unordered-inside
+
+img
+  max-width: 100%
+  max-height: 100%
+
+
+/* ::State styles
+/* ------------------------------------------------------------
+
+.is-hidden
+  display: none
+
+.is-shown, .is-block
+  display: block
+
+.is-uppercase
+  text-transform: uppercase
+  letter-spacing: 1px
+
+.is-lowercase
+  text-transform: lowercase
+
+
+/* ::Specific Slide styles
+/* ------------------------------------------------------------
+body
+  color: #000
+
+pre
+  overflow: auto
+  white-space: pre-wrap !important
+code
+  overflow: auto
+  white-space: pre-wrap !important
+
+.bespoke-slide
+  page-break-after: always
+  font-size: 140%
+
+#slide1, #slide3, #slide5, #slide7, #slide12, #slide14, #slide15, #slide16
+  page-break-after: avoid
+
+#slide4 img
+  display: block
+
+
+iframe
+  display: none
+
+img
+  display: none
+
+#slide9, #slide11, #slide18
+  display: none
