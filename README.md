@@ -29,7 +29,11 @@ Demo Modus
 ----------
 
 Um die Live-Demos benutzen zu können muss nach Installation der
-Voraussetzungen die `server.js` ausgeführt werden:
+Voraussetzungen erstmal alle nötigen nodejs libraries installieren. Das geht einfach in dem ihr folgenden Command in diesem Ordner ausführt (dieser liest die `packages.json` ein):
+
+    npm install
+
+Anschließend kann die `server.js` ausgeführt werden:
 
     node server.js
 
