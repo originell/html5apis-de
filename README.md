@@ -7,11 +7,13 @@ Vortrag vom 14. Mai 2013 auf der SAE Wien über (guess what) HTML5 APIs.
 Benutzung
 ---------
 
-Um alles einfach nur anzusehen, die `html5apis.zip` downloaden, entpacken und
-die index.html aufmachen.
+Um sich die Presentation einfach anzusehen, die `standalone.zip` downloaden,
+entpacken und die index.html aufmachen. Die Standalone Version enthält keine
+der Demo-JavaScripte. Hierfür muss die reguläre Version benutzt werden. (siehe
+unten)
 
 
-Vorraussetzungen
+Voraussetzungen
 ----------------
 
 Um WebSocket beispiele laufen zu lassen:
@@ -22,3 +24,20 @@ für die Weiterentwicklung:
 
 * compass
 * guard (für livereload)
+
+Demo Modus
+----------
+
+Um die Live-Demos benutzen zu können muss nach Installation der
+Voraussetzungen die `server.js` ausgeführt werden:
+
+    node server.js
+
+Dadurch wird ein Server ausgeführt der auf allen Adressen des Computers
+lauscht. Dieser ist daher über die lokale Netzwerk-IP, externe IP als auch
+localhost erreichbar via `http://localhost:8000`.
+
+Um ein externes Gerät (Smartphone,…) als Fernsteuerung für die Presentation
+zu benutzen einfach `http://localhost:8000/ctrl` aufrufen. Dieses Gerät
+wird auch als Quelle für die WebSockets Device Orientation Stream Demo als
+auch die User Media Demo benutzt.

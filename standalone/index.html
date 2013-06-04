@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML5 APIs – Luis Nell</title>
+    <meta charset="utf-8" />
+    <link href='http://fonts.googleapis.com/css?family=Faster+One' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/screen.css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="css/prism.css" charset="utf-8" />
+    <link rel="stylesheet" href="css/print.css" media="print" charset="utf-8" />
+</head>
+<body>
+    <article>
+        <section id="slide1">
+            <h1>HTML5 APIs</h1>
+        </section>
+        <section id="slide2">
+            <img src="imgs/luis.jpg" />
+            <h1>Luis Nell</h1>
+            <p><span>twitter.com/</span>originell</p>
+            <p><span>github.com/</span>originell</p>
+        </section>
+        <section id="slide3" x-bespoke-state="caniuse-bg">
+            <h1>caniuse.com</h1>
+            <iframe style="width: 100%; height: 100%" src="http://www.caniuse.com/">
+                <img src="imgs/caniuse.png" />
+            </iframe>
+        </section>
+        <section id="slide4" x-bespoke-state="rocks-bg">
+            <img src="imgs/html5rocks.webp" />
+        </section>
+        <section id="slide5" x-bespoke-state="rocks-bg">
+            <img src="imgs/phone.png" />
+            <h1>Device Orientation</h1>
+        </section>
+        <section id="slide6" x-bespoke-state="rocks-bg">
+            <pre><code class="language-javascript">function orient(e) {
+    var tiltLR = e.gamma,
+        tiltFB = e.beta,
+        dir = e.alpha;
+    console.log(tiltLR, tiltFB, dir);
+}
+
+if (window.DeviceOrientationEvent) {
+    console.log("DeviceOrientation is supported");
+    window.addEventListener('deviceorientation', orient, false);
+}</code></pre>
+            <img src="imgs/phone.png" />
+        </section>
+        <section id="slide7" x-bespoke-state="rocks-bg">
+            <img src="imgs/mark.jpg" />
+            <h1>Geolocation</h1>
+            <!-- Demo: http://www.html5rocks.com/en/tutorials/geolocation/trip_meter/ -->
+        </section>
+        <section id="slide8" x-bespoke-state="rocks-bg">
+            <pre><code class="language-javascript">var geoMap = document.getElementById('#geomap')  // a div element
+  , map = new google.maps.Map(geoMap, {zoom: 3,
+                                       mapTypeId: google.maps.MapTypeId.ROADMAP});
+
+function showPosition(position) {
+  var latLng = new google.maps.LatLng(position.coords.latitude,
+                                      position.coords.longitude);
+  var marker = new google.maps.Marker({position: latLng, map: map});
+  map.setCenter(latLng);
+  map.setZoom(15);
+}
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, handlePositionError);
+    navigator.geolocation.watchPosition(showPosition, handlePositionError);
+}</code></pre>
+            <button>Locate me now</button>
+            <div id="geomap"></div>
+        </section>
+        <section id="slide9" x-bespoke-state="rocks-bg">
+            <h1>HTML Media Capture&thinsp;/&thinsp;getUserMedia</h1>
+            <div><h2>Placeholder</h2></div>
+        </section>
+        <section id="slide10" x-bespoke-state="rocks-bg">
+            <h1>HTML Media Capture</h1>
+            <pre data-bespoke-bullet><code class="language-markup">&lt;form action="/upload" name="usermedia" method="post"
+          accept-charset="utf-8" enctype='multipart/form-data'&gt;
+     &lt;input type="file" name="img" accept="image/*;capture=camera"&gt;
+     &lt;input type="file" name="video" accept="video/*;capture=camcorder"&gt;
+     &lt;input type="file" name="audio" accept="audio/*;capture=microphone"&gt;
+ &lt;/form&gt;
+
+ &lt;script&gt;
+ // Autosubmit when user made a shot.
+ var camera = document.querySelector('input[accept^=image]');
+ camera.addEventListener('change', function() {
+     document.forms.usermedia.submit();
+ });
+ &lt;/script&gt;</code></pre>
+            <ul data-bespoke-bullet>
+                <li>begrenzte Unterstützung (iOS6, Android 3.0+)</li>
+                <li data-bespoke-bullet>wird von <a href="http://www.html5rocks.com/en/tutorials/webrtc/basics/" target="_blank">WebRTC</a>/getUserMedia ersetzt</li>
+            </ul>
+        </section>
+        <section id="slide11" x-bespoke-state="rocks-bg">
+            <h1>getUserMedia <button>Start</button></h1>
+            <form name="filters">
+                <label>Grayscale
+                    <input name="gray" x-filter="grayscale" type="range" min="0" max="100" value="0" />
+                </label>
+                <label>Sepia
+                    <input name="sepia" x-filter="sepia" type="range" min="0" max="100" value="0" />
+                </label>
+                <label>Saturation
+                    <input name="saturation" x-filter="saturate" type="range" min="0" max="100" value="0" />
+                </label>
+                <label>Color Shift
+                    <input name="huerotate" x-filter="hue-rotate" x-unit="deg" type="range" min="0" max="360" value="0" />
+                </label>
+                <label>Invert
+                    <input name="invert" x-filter="invert" type="range" min="0" max="100" value="0" />
+                </label>
+                <label>Opacity
+                    <input name="opacity" x-filter="opacity" type="range" min="0" max="100" value="100" />
+                </label>
+                <label>Brightness
+                    <input name="brightness" x-filter="brightness" type="range" min="0" max="300" value="0" />
+                </label>
+                <label>Contrast
+                    <input name="contrast" x-filter="contrast" type="range" min="0" max="300" value="0" />
+                </label>
+                <label>Blur
+                    <input name="blur" x-filter="blur" x-unit="px" type="range" min="0" max="80" value="0" />
+                </label>
+            </form>
+            <video autoplay></video>
+        </section>
+        <section id="slide11" x-bespoke-state="rocks-bg">
+            <h1>getUserMedia</h1>
+            <pre data-bespoke-bullet><code class="language-markup">&lt;video autoplay&gt;&lt;/video&gt;
+&lt;script&gt;
+    var video = document.getElementsByTagName('video')[0],
+        stream = null;
+
+    navigator.webkitGetUserMedia({video: true}, function(localMediaStream) {
+        stream = localMediaStream;
+        video.src = window.URL.createObjectURL(localMediaStream);
+    }, failHandler);
+
+    // Pause playback
+    video.pause();
+    // To stop a stream
+    stream.stop();
+&lt;/script&gt;</code></pre>
+            <ul data-bespoke-bullet>
+                <li>mobile Lösung schwer</li>
+            </ul>
+        </section>
+        <section id="slide12" x-bespoke-state="rocks-bg">
+            <h1><code class="language-javascript">requestAnimationFrame()</code></h1>
+            <ul>
+                <li data-bespoke-bullet>kurz: rAF</li>
+                <li data-bespoke-bullet>Browser bestimmt Rendering</li>
+                <li data-bespoke-bullet>Ziel: flüssige Animationen</li>
+                <li data-bespoke-bullet>kombiniert mit CSS3 Animations sehr mächtig (<a href="http://www.greensock.com/" target="_blank">GreenSock<i class="icon-external-link"></i></a>)</li>
+                <li data-bespoke-bullet>~16.67ms Zeit für Operationen (60 Frames Pro Sekunde. 1 Sekunde = 1000ms. 1000/60 => 16.66667)</li>
+                <li data-bespoke-bullet>Support mit Vendor-Prefixes</li>
+                <li data-bespoke-bullet><a href="https://gist.github.com/paulirish/1579671" target="_blank">immer aktueller Polyfill<i class="icon-external-link"></i></a></li>
+            </ul>
+        </section>
+        <section id="slide13" x-bespoke-state="rocks-bg">
+            <h1><code class="language-javascript">requestAnimationFrame()</code></h1>
+            <pre><code class="language-javascript">/* Polyfill code here: https://gist.github.com/paulirish/1579671
+ * Simplified example code.
+ * Really good one here: http://www.html5rocks.com/en/tutorials/speed/animations/ */
+
+var window_size = [window.innerWidth, window.innerHeight],
+    cover = document.getElementById('#overlay');
+
+window.addEventListener('resize', function() {
+     window_size = [window.innerWidth, window.innerHeight];
+     requestAnimationFrame(resize);
+});
+
+function resize() {
+     cover.style.width = window_size[0] + 'px';
+     cover.style.height = window_size[1] + 'px';
+}</code></pre>
+        </section>
+        <section id="slide14" x-bespoke-state="rocks-bg">
+            <h1>Websockets</h1>
+            <ul>
+                <li data-bespoke-bullet>persistent full duplex communication channel over 1 TCP connection.</li>
+                <li data-bespoke-bullet>dauerhafter Kommunikationskanal</li>
+                <li data-bespoke-bullet>Server und Client können jederzeit Daten senden</li>
+                <li data-bespoke-bullet>über eine einzige zusätzliche Verbindung (auf Port 80)</li>
+            </ul>
+            <pre data-bespoke-bullet><code class="language-javascript">var connection = new WebSocket('ws://example.com/echo', ['soap']);
+connection.onopen = function() {
+    connection.send('Hey there!');  // "Ping" the server
+};
+connection.onerror = function(error) {
+    console.log('Fail:', error);
+};
+connection.onmessage = function(e) {
+    console.log('Server:', e.data);
+};</code></pre>
+        </section>
+        <section id="slide15" x-bespoke-state="rocks-bg">
+            <h1>Websockets Vorteile</h1>
+            <ul>
+                <li data-bespoke-bullet>kein HTTP Overhead</li>
+                <li data-bespoke-bullet>Niedrige Latenz</li>
+                <li data-bespoke-bullet>Nachrichtenbasiert</li>
+                <li data-bespoke-bullet>Bytebasiert</li>
+                <li data-bespoke-bullet>(eine der Grundlagen für <a href="http://www.html5rocks.com/en/tutorials/webrtc/basics/" target="_blank">WebRTC</a>)</li>
+            </ul>
+        </section>
+        <section id="slide16" x-bespoke-state="rocks-bg">
+            <h1>Websockets Nachteile</h1>
+            <ul>
+                <li data-bespoke-bullet>viele verschiedene Implementationen in Browsern</li>
+                <li data-bespoke-bullet>Firewall Blocking?</li>
+                <li data-bespoke-bullet>ziemlich low-level</li>
+                <li data-bespoke-bullet>Security Issues ohne sichere Verbindung (WSS)</li>
+                <li data-bespoke-bullet>HTTP Server Support mangelhaft</li>
+                <li data-bespoke-bullet>Backend Sprachen ohne Event-Support seltsam</li>
+            </ul>
+        </section>
+        <section id="slide17" x-bespoke-state="rocks-bg">
+            <h1>Websockets Lösungen</h1>
+            <ul>
+                <li data-bespoke-bullet><a href="http://www.socket.io/">SocketIO</a></li>
+                <li data-bespoke-bullet><a href="http://www.nginx.org/">nginx 1.13+</a></li>
+                <li data-bespoke-bullet>Dotcloud's <a href="https://github.com/dotcloud/hipache">hipache</a></li>
+                <li data-bespoke-bullet><a href="http://haproxy.1wt.eu/">HAproxy</a></li>
+                <li data-bespoke-bullet>SocketIO Implementation für &lt;die Sprache&gt; oder&hellip;</li>
+                <li data-bespoke-bullet>PHP/Python/Ruby/&hellip; <i class="icon-arrow-right"></i> PubSub (Redis/ZeroMQ/&hellip;)<i class="icon-arrow-right"></i> NodeJS <i class="icon-arrow-right"></i> SocketIO</li>
+            </ul>
+        </section>
+        <section id="slide18" x-bespoke-state="vs-bg">
+            <h1>Storage</h1>
+            <p>Webstorage <span class="fx">vs.</span> <span>IndexedDB</span></p>
+        </section>
+        <section id="slide19" x-bespoke-state="vs-bg">
+            <h1>Webstorage (auch "DOM Storage")</h1>
+            <ul>
+                <li data-bespoke-bullet>Einfacher Key<i class="icon-arrow-right"></i>Value Store</li>
+                <li data-bespoke-bullet>Limitiert auf 2,5&ndash;5 MB</li>
+                <li data-bespoke-bullet>Anpassbar vom Benutzer</li>
+                <li data-bespoke-bullet>localStorage &amp; sessionStorage</li>
+                <li data-bespoke-bullet><em>Kein</em> Ersatz für Cache</li>
+            </ul>
+            <pre data-bespoke-bullet><code class="language-javascript">if (!window.localStorage) {
+    console.log('No localStorage support. Fallback to cookie storage.');
+    // Load the polyfill...
+}
+localStorage.setItem('todo:1', 'Talk about HTML5 APIs');
+localStorage.setItem('todo:2', JSON.stringify({task: 'Do something practical',
+                                               done: false}));
+
+var current_todo = JSON.parse(localStorage.getItem('todo:2'));
+current_todo.done = true;
+localStorage.setItem('todo:2', JSON.stringify(current_todo));
+
+localStorage.removeItem('todo:1');</code></pre>
+        </section>
+        <section id="slide20" x-bespoke-state="vs-bg">
+            <h1>IndexedDB (Nachfolger von WebSQL)</h1>
+            <ul>
+                <li data-bespoke-bullet>Sehr experimentell</li>
+                <li data-bespoke-bullet>Advanced Key<i class="icon-arrow-right"></i>Value Store</li>
+                <li data-bespoke-bullet>Softlimit variiert zwischen Browsern</li>
+                <li data-bespoke-bullet>"Object Store"</li>
+                <li data-bespoke-bullet>API Mischung aus SQL und MongoDB</li>
+                <li data-bespoke-bullet>Kann auch Binärdaten speichern</li>
+            </ul>
+            <pre data-bespoke-bullet><code class="language-javascript">/*
+ * Cooles Codebeispiel
+ * mit recht komplizierter API.
+ * Wäre hier
+ * aber das erspar ich euch
+ */</code></pre>
+        </section>
+        <section id="slide21" x-bespoke-state="rocks-bg">
+            <h1>Und so weiter&hellip;</h1>
+            <ul>
+                <li><a href="http://diveintohtml5.info/history.html" target="_blank">History</a></li>
+                <li><a href="http://www.html5rocks.com/en/tutorials/pagevisibility/intro/" target="_blank">PageVisibility</a></li>
+                <li><a href="http://www.html5rocks.com/en/mobile/touchandmouse/" target="_blank">Pointer Events</a></li>
+                <li><a href="http://www.html5rocks.com/en/tutorials/notifications/quick/" target="_blank">Notifications</a></li>
+                <li><a href="http://www.html5rocks.com/en/tutorials/workers/basics/" target="_blank">WebWorkers</a></li>
+                <li><a href="http://www.html5rocks.com/en/tutorials/webperformance/basics/" target="_blank">NavigationTiming</a></li>
+                <li><a href="http://www.html5rocks.com/en/tutorials/webcomponents/template/" target="_blank">Template Tag</a></li>
+                <li>und hoffentlich bald noch viel viel viel mehr&hellip;</li>
+            </ul>
+        </section>
+    </article>
+    <!-- better underscore.js for some nice functional programming. -->
+    <script src="js/vendor/lodash.min.js"></script>
+    <!-- code highlighter -->
+    <script src="js/vendor/prism.js"></script>
+    <!-- presentation framework -->
+    <script src="js/vendor/bespoke.min.js"></script>
+    <!-- plugin: bullet points that only appear after keypress -->
+    <script src="js/vendor/bespoke-bullets.min.js"></script>
+    <!-- plugin: linkable slides via hashes -->
+    <script src="js/vendor/bespoke-hash.min.js"></script>
+    <!-- plugin: make slides searchable (pressing q) -->
+    <script src="js/vendor/bespoke-spotlight.min.js"></script>
+    <!-- plugin: press b or w to black/white out the presentation -->
+    <script src="js/vendor/bespoke-blackout.min.js"></script>
+    <script>
+    !function() {
+        'use strict';
+        // Bespoke Presentation Framework - Init!
+
+        // Install some plugins...
+        bespoke.plugins.progress = function(deck) {
+            var progressBar = document.createElement('span'),
+                progressWrapper = document.createElement('div');
+
+            progressWrapper.className = 'bespoke-progress';
+            progressWrapper.appendChild(progressBar);
+            deck.parent.appendChild(progressWrapper);
+
+            deck.on('activate', function(e) {
+                progressBar.style.width = ((e.index * 100) / (deck.slides.length - 1)) + '%';
+            });
+        };
+
+        // Possibility of changing the overall presentation style
+        bespoke.plugins.state = function(deck) {
+            var previous_states = [];
+            deck.on('activate', function(e) {
+                var states = e.slide.getAttribute('x-bespoke-state'),
+                    stateList = states ? states.split(' ') : [];
+                // Pass "deck.parent.classList" as "this" to the remove method,
+                // otherwise we get an illegal invocation exception.
+                _(previous_states).forEach(deck.parent.classList.remove, deck.parent.classList);
+                _(stateList).forEach(deck.parent.classList.add, deck.parent.classList);
+                previous_states = stateList;
+            });
+        };
+
+        window.presentation = bespoke.horizontal.from('article',
+                                                      { progress: true,
+                                                        hash: true,
+                                                        bullets: true,
+                                                        spotlight: true,
+                                                        blackout: true,
+                                                        state: true });
+    }();
+    </script>
+</body>
+</html>
