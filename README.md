@@ -42,6 +42,6 @@ lauscht. Dieser ist daher über die lokale Netzwerk-IP, externe IP als auch
 localhost erreichbar via `http://localhost:8000`.
 
 Um ein externes Gerät (Smartphone,…) als Fernsteuerung für die Presentation
-zu benutzen einfach `http://localhost:8000/ctrl` aufrufen. Dieses Gerät
+zu benutzen einfach `http://<eure ip>:8000/ctrl` aufrufen. Dieses Gerät
 wird auch als Quelle für die WebSockets Device Orientation Stream Demo als
 auch die User Media Demo benutzt.
